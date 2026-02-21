@@ -52,6 +52,8 @@ module.exports = (_, argv = {}) => {
       runtimeChunk: 'single',
     },
     devServer: {
+      host: '0.0.0.0',
+      allowedHosts: 'all',
       static: {
         directory: path.resolve(__dirname, 'public'),
         publicPath: '/',
