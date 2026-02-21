@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useEffect, useMemo, useState } from "react";
 
 const ACAZDA_ORIGIN = "https://www.acadza.com";
@@ -92,7 +90,8 @@ export default function DostClient() {
             // Security: only accept messages from acadza.com
             if (event.origin !== ACAZDA_ORIGIN) return;
 
-            const action = (event.data as any)?.action;
+            const data = event.data as { action?: string } | null;
+            const action = data?.action;
 
             if (action === "logout") {
                 deleteCookie("phone");

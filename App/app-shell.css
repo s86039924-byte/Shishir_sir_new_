@@ -64,6 +64,14 @@ img {
   flex: 1;
 }
 
+.appLoading {
+  min-height: 30vh;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: var(--theme-text);
+}
+
 .shellFooter {
   margin-top: auto;
   background: var(--theme-text);

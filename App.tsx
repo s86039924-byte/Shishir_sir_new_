@@ -1,14 +1,6 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { Suspense, lazy, useEffect, useMemo, useState } from "react";
 import IitsfHome from "./home/home";
-import CoursesPage from "./course/coursePage";
-import ScholarshipExamPage from "./scholrship/scholorship";
-import FacultyPage from "./faculty/faculty";
-import SuccessStoriesPage from "./tetimonila/testimonila";
-import GalleryPage from "./galery/galery";
-import TermsPage from "./terms/terms";
 import Havbar from "./havbar/Havbar";
-import DostPage from "./dost/page";
-import WhyUsPage from "./whyus/whyUs";
 import "./App/app-shell.css";
 
 type PageKey =
@@ -23,6 +15,15 @@ type PageKey =
   | "whyus";
 
 type NavItem = { key: PageKey; label: string };
+
+const CoursesPage = lazy(() => import("./course/coursePage"));
+const ScholarshipExamPage = lazy(() => import("./scholrship/scholorship"));
+const FacultyPage = lazy(() => import("./faculty/faculty"));
+const SuccessStoriesPage = lazy(() => import("./tetimonila/testimonila"));
+const GalleryPage = lazy(() => import("./galery/galery"));
+const TermsPage = lazy(() => import("./terms/terms"));
+const DostPage = lazy(() => import("./dost/page"));
+const WhyUsPage = lazy(() => import("./whyus/whyUs"));
 
 const pageFromHash = (hash: string): PageKey => {
   const key = hash.replace(/^#\/?/, "").toLowerCase();
@@ -55,7 +56,7 @@ const App: React.FC = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }, [page]);
 
-  const CurrentPage = useMemo(() => {
+  const CurrentPage = useMemo<React.ElementType>(() => {
     switch (page) {
       case "courses":
         return CoursesPage;
@@ -95,7 +96,9 @@ const App: React.FC = () => {
       {page !== "dost" && <Havbar navItems={navItems} activePage={page} />}
 
       <main className="appContent">
-        <CurrentPage />
+        <Suspense fallback={<div className="appLoading">Loading page...</div>}>
+          <CurrentPage />
+        </Suspense>
       </main>
 
       {page !== "dost" && (
