@@ -1,0 +1,444 @@
+.galPage{
+  --primary:#C9A227;
+  --accent:#B11226;
+
+  --bgLight:#F8F9FA;
+  --text:#1F2933;
+  --muted:#6B7280;
+
+  --white:#ffffff;
+  --border:#E5E7EB;
+
+  --shadowSm:0 1px 2px rgba(2,6,23,.08);
+  --shadowMd:0 10px 26px rgba(2,6,23,.12);
+
+  --radiusSm:10px;
+  --radiusMd:12px;
+  --radiusLg:16px;
+  --radiusXl:18px;
+}
+
+/* ===== Page ===== */
+.galPage{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ===== Main ===== */
+.galMain{
+  flex:1;
+  width:100%;
+  max-width:1280px;
+  margin:0 auto;
+  padding:28px 16px 42px;
+}
+
+/* ===== Top Row ===== */
+.galTopRow{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  justify-content:space-between;
+  margin-bottom:24px;
+}
+.galIntro{ max-width:720px; }
+.galTitle{
+  margin:0 0 10px;
+  font-size:40px;
+  line-height:1.05;
+  font-weight:950;
+  letter-spacing:-.02em;
+}
+.galSubtitle{
+  margin:0;
+  color:#6B7280;
+  font-size:16px;
+  line-height:1.8;
+  font-weight:600;
+}
+
+/* Switch */
+.galSwitch{
+  align-self:flex-start;
+  display:flex;
+  border-radius:var(--radiusSm);
+  overflow:hidden;
+  background:#F7F0D9;
+  border:1px solid #F7F0D9;
+}
+.galSwitchBtn{
+  position:relative;
+  border:none;
+  cursor:pointer;
+  padding:10px 28px;
+  font-size:13px;
+  font-weight:900;
+  color:#6B7280;
+  background:transparent;
+  transition:background .18s ease, color .18s ease;
+}
+.galSwitchBtn:hover{ background:transparent; color:#4B5563; }
+.galSwitchBtnActive{
+  background:rgba(230,216,168,.55);
+  color:#A8841F;
+}
+.galSwitchUnderline{
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:2px;
+  background:var(--accent);
+}
+
+/* ===== Pills ===== */
+.galPills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  padding-bottom:16px;
+  margin-bottom:18px;
+  border-bottom:1px solid var(--border);
+}
+.galPill{
+  border-radius:999px;
+  padding:8px 14px;
+  font-size:13px;
+  font-weight:700;
+  border:1px solid #E5E7EB;
+  background:#fff;
+  color:#4B5563;
+  cursor:pointer;
+  transition:transform .15s ease, border-color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+.galPill:hover{
+  border-color:var(--accent);
+  color:var(--accent);
+  box-shadow:var(--shadowSm);
+  transform:translateY(-1px);
+}
+.galPillActive{
+  background:var(--primary);
+  border-color:var(--primary);
+  color:#fff;
+}
+
+/* ===== Grid ===== */
+.galGrid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:16px;
+}
+
+/* Card base */
+.galCard{
+  position:relative;
+  overflow:hidden;
+  border-radius:var(--radiusLg);
+  background:#F8F9FA;
+  box-shadow:var(--shadowSm);
+  border:1px solid transparent;
+  cursor:pointer;
+  transition:box-shadow .25s ease, transform .25s ease, border-color .25s ease;
+}
+.galCard:hover{
+  box-shadow:var(--shadowMd);
+  transform:translateY(-2px);
+}
+.galCard:hover .galImg{ transform:scale(1.05); }
+
+.galImg{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .5s ease;
+}
+
+/* Big card */
+.galCardBig{
+  aspect-ratio:4 / 3;
+}
+.galBigOverlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,.20), transparent);
+  opacity:.90;
+}
+.galBigContent{
+  position:absolute;
+  left:0;
+  bottom:0;
+  padding:22px;
+  width:100%;
+}
+.galTag{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:6px;
+  font-size:11px;
+  font-weight:950;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#fff;
+  margin-bottom:10px;
+}
+.galTagRed{ background:var(--accent); }
+.galBigTitle{
+  margin:0 0 8px;
+  color:#fff;
+  font-size:20px;
+  font-weight:950;
+  line-height:1.2;
+}
+.galBigText{
+  margin:0;
+  color:#F7F0D9;
+  font-size:13px;
+  font-weight:600;
+  line-height:1.6;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+/* Square card */
+.galCardSquare{
+  aspect-ratio:1 / 1;
+}
+.galHoverOverlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.45), transparent);
+  opacity:0;
+  transition:opacity .25s ease;
+}
+.galCard:hover .galHoverOverlay{ opacity:1; }
+.galHoverText{
+  position:absolute;
+  left:0;
+  bottom:0;
+  padding:16px;
+  transform:translateY(16px);
+  transition:transform .25s ease;
+}
+.galCard:hover .galHoverText{ transform:translateY(0); }
+.galHoverTitle{
+  margin:0;
+  color:#fff;
+  font-size:13px;
+  font-weight:950;
+}
+.galHoverSub{
+  margin:6px 0 0;
+  color:#F7F0D9;
+  font-size:12px;
+  font-weight:600;
+}
+
+/* Corner Icon */
+.galCornerIcon{
+  position:absolute;
+  top:12px;
+  right:12px;
+  z-index:3;
+  background:rgba(255,255,255,.92);
+  border-radius:999px;
+  padding:6px;
+  color:var(--accent);
+  box-shadow:var(--shadowSm);
+}
+.galCornerIcon .material-symbols-outlined{ font-size:18px; }
+
+/* Wide video card */
+.galCardWide{
+  aspect-ratio:16 / 9;
+}
+.galVideoOverlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.22);
+  transition:background .2s ease;
+}
+.galCard:hover .galVideoOverlay{ background:rgba(0,0,0,.34); }
+
+.galPlayWrap{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:2;
+}
+.galPlayBtn{
+  width:64px;
+  height:64px;
+  border-radius:999px;
+  background:var(--accent);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:4px solid rgba(255,255,255,.20);
+  box-shadow:0 16px 30px rgba(127,29,29,.18);
+  transition:transform .25s ease;
+}
+.galPlayBtn .material-symbols-outlined{ font-size:36px; margin-left:2px; }
+.galCard:hover .galPlayBtn{ transform:scale(1.10); }
+
+.galTime{
+  position:absolute;
+  right:12px;
+  bottom:12px;
+  z-index:3;
+  background:rgba(0,0,0,.70);
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  padding:4px 8px;
+  border-radius:6px;
+  border-left:3px solid var(--accent);
+}
+.galBadge{
+  position:absolute;
+  left:12px;
+  top:12px;
+  z-index:3;
+  background:rgba(201,162,39,.90);
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  padding:4px 8px;
+  border-radius:6px;
+}
+
+.galWideBottom{
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  padding:16px;
+  background:linear-gradient(to top, rgba(0,0,0,.90), transparent);
+  z-index:3;
+}
+.galWideTitle{
+  margin:0;
+  color:#fff;
+  font-size:18px;
+  font-weight:950;
+}
+.galWideSub{
+  margin:6px 0 0;
+  color:#F7F0D9;
+  font-size:13px;
+  font-weight:600;
+}
+
+/* Small video tweaks */
+.galPlayBtnSmall{
+  width:48px;
+  height:48px;
+  border-width:2px;
+}
+.galPlayBtnSmall .material-symbols-outlined{ font-size:28px; margin-left:2px; }
+
+.galTimeSmall{
+  font-size:10px;
+  padding:4px 7px;
+  border-left-width:2px;
+}
+
+.galSmallBottom{
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  padding:14px;
+  background:linear-gradient(to top, rgba(0,0,0,.80), transparent);
+  z-index:3;
+  transform:translateY(16px);
+  transition:transform .25s ease;
+}
+.galCard:hover .galSmallBottom{ transform:translateY(0); }
+
+.galSmallTitle{
+  margin:0;
+  color:#fff;
+  font-size:13px;
+  font-weight:950;
+}
+.galSmallSub{
+  margin:6px 0 0;
+  color:#F7F0D9;
+  font-size:12px;
+  font-weight:600;
+}
+
+/* ===== Load more ===== */
+.galLoadMoreWrap{
+  margin-top:30px;
+  display:flex;
+  justify-content:center;
+}
+.galLoadMoreBtn{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+  background:#fff;
+  border:2px solid #E5E7EB;
+  color:#4B5563;
+  font-weight:950;
+  font-size:13px;
+  padding:12px 22px;
+  border-radius:var(--radiusSm);
+  box-shadow:var(--shadowSm);
+  transition:border-color .15s ease, color .15s ease, transform .15s ease;
+}
+.galLoadMoreBtn:hover{
+  border-color:var(--primary);
+  color:var(--primary);
+  transform:translateY(-1px);
+}
+.galLoadMoreIcon{ font-size:18px; }
+
+/* ===== Responsive ===== */
+@media (min-width: 640px){
+  .galMain{ padding:40px 24px 56px; }
+  .galTitle{ font-size:52px; }
+
+  .galGrid{ grid-template-columns:repeat(2, 1fr); gap:18px; }
+  .galCardWide{ grid-column:1 / -1; }
+}
+
+@media (min-width: 768px){
+  .galTopRow{
+    flex-direction:row;
+    align-items:flex-end;
+    gap:24px;
+    margin-bottom:32px;
+  }
+  .galSwitch{ align-self:flex-end; }
+}
+
+@media (min-width: 1024px){
+  .galMain{ padding-left:32px; padding-right:32px; }
+
+  .galGrid{
+    grid-template-columns:repeat(4, 1fr);
+    gap:22px;
+    grid-auto-flow:dense;
+  }
+
+  .galCardBig{
+    grid-column:span 2;
+    grid-row:span 2;
+    aspect-ratio:auto;
+    min-height:420px;
+  }
+
+  .galCardWide{
+    grid-column:span 2;
+  }
+}

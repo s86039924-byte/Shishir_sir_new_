@@ -1,0 +1,297 @@
+.shellNav {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: #1f2933;
+  border-bottom: 1px solid #e6d8a8;
+  margin: 0;
+}
+
+.shellNavInner {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 10px 12px 10px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.shellBrand {
+  color: #f8f9fa;
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+  min-width: 0;
+  flex: 1;
+}
+
+.shellBrandLogoFrame {
+  width: 80px;
+  height: 80px;
+  flex: 0 0 64px;
+  display: inline-block;
+  margin-left: 0;
+}
+
+.shellBrandLogo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+
+
+.shellBrandText {
+  font-size: 1.2rem;
+  line-height: 1;
+  color: #f7f0d9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shellLinks {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.shellLink {
+  color: #f7f0d9;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+
+.shellLinkDost {
+  background: #8e0e1f;
+  border-color: #e6d8a8;
+  color: #f7f0d9;
+  font-weight: 700;
+  min-width: 74px;
+  min-height: 38px;
+  padding: 8px 16px;
+}
+
+.shellLinkDost:hover {
+  background: #b11226;
+}
+
+.shellLinkActive {
+  color: #111827;
+  background: #f7f0d9;
+  border-color: #e6d8a8;
+  font-weight: 700;
+}
+
+.shellLinkDost.shellLinkActive {
+  color: #f7f0d9;
+  background: #b11226;
+  border-color: #e6d8a8;
+}
+
+.shellMenuBtn {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  border: 1px solid rgba(230, 216, 168, 0.5);
+  background: transparent;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0;
+}
+
+.shellMenuBtn span {
+  width: 18px;
+  height: 2px;
+  background: #f7f0d9;
+  border-radius: 4px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.shellDostQuick {
+  display: none;
+  text-decoration: none;
+  background: #8e0e1f;
+  border: 1px solid #e6d8a8;
+  color: #f7f0d9;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 8px 12px;
+  line-height: 1;
+}
+
+.shellDrawerBackdrop {
+  display: none;
+}
+
+.shellDrawer {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .shellNavInner {
+    padding: 10px 12px;
+    align-items: center;
+  }
+
+  .shellBrand {
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .shellBrandText {
+    font-size: 1rem;
+    white-space: nowrap;
+    padding-top: 4px;
+  }
+
+  .shellLinks {
+    display: none;
+  }
+
+  .shellMenuBtn {
+    display: inline-flex;
+    margin-left: 0;
+    order: 3;
+  }
+
+  .shellDostQuick {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    order: 2;
+    margin-left: auto;
+  }
+
+  .shellDrawerBackdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(17, 24, 39, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 998;
+  }
+
+  .shellDrawerBackdropOpen {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .shellDrawer {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: min(78vw, 300px);
+    background: #1f2933;
+    border-left: 1px solid rgba(230, 216, 168, 0.4);
+    transform: translateX(100%);
+    transition: transform 0.25s ease;
+    z-index: 999;
+    padding: 16px 14px;
+  }
+
+  .shellDrawerOpen {
+    transform: translateX(0);
+  }
+
+  .shellDrawerHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #f7f0d9;
+    font-weight: 700;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(230, 216, 168, 0.3);
+  }
+
+  .shellDrawerClose {
+    border: none;
+    background: transparent;
+    color: #f7f0d9;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+
+  .shellDrawerLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .shellDrawerLink {
+    color: #f7f0d9;
+    text-decoration: none;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    font-weight: 600;
+  }
+
+  .shellDrawerLinkActive {
+    color: #111827;
+    background: #f7f0d9;
+    border-color: #e6d8a8;
+  }
+
+  .shellDrawerLinkDost {
+    background: #8e0e1f;
+    border-color: #e6d8a8;
+    color: #f7f0d9;
+    font-weight: 700;
+    min-height: 44px;
+    padding: 12px 14px;
+  }
+
+  .shellDrawerLinkDost.shellDrawerLinkActive {
+    color: #f7f0d9;
+    background: #b11226;
+  }
+
+  .shellBrandLogo {
+    transform: scale(1.08);
+  }
+
+  .shellBrandLogoFrame {
+    width: 56px;
+    height: 56px;
+    flex-basis: 56px;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .shellBrandText {
+    font-size: 0.88rem;
+    white-space: nowrap;
+    padding-top: 3px;
+  }
+
+  .shellDrawer {
+    width: 84vw;
+  }
+
+  .shellBrandLogoFrame {
+    width: 50px;
+    height: 50px;
+    flex-basis: 50px;
+  }
+}
