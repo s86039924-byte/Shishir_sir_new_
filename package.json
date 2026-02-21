@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "webpack serve --mode development --open",
-    "start": "webpack serve --mode development --open",
+    "start": "webpack serve --mode development --port ${PORT:-3000}",
     "build": "webpack --mode production",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --ext .ts,.tsx",
