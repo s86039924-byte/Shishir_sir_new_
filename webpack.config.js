@@ -1,6 +1,31 @@
 const path = require('path');
+const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+class CopyPublicAssetsPlugin {
+  apply(compiler) {
+    compiler.hooks.afterEmit.tap('CopyPublicAssetsPlugin', () => {
+      const publicDir = path.resolve(__dirname, 'public');
+      const outputDir = compiler.options.output.path;
+
+      if (!fs.existsSync(publicDir) || !outputDir) {
+        return;
+      }
+
+      for (const entry of fs.readdirSync(publicDir)) {
+        if (entry === 'index.html') {
+          continue;
+        }
+
+        fs.cpSync(path.join(publicDir, entry), path.join(outputDir, entry), {
+          recursive: true,
+          force: true,
+        });
+      }
+    });
+  }
+}
 
 module.exports = (_, argv = {}) => {
   const isProd = argv.mode === 'production';
@@ -42,8 +67,9 @@ module.exports = (_, argv = {}) => {
             new MiniCssExtractPlugin({
               filename: '[name].[contenthash].css',
             }),
+            new CopyPublicAssetsPlugin(),
           ]
-        : []),
+        : [new CopyPublicAssetsPlugin()]),
     ],
     optimization: {
       splitChunks: {
