@@ -18,7 +18,7 @@ const galleryItems: GalleryItem[] = [
     description: "Students celebrating a milestone together.",
     category: "Events",
     size: "large",
-    image: "https://drive.google.com/file/d/1qdBbTUC8xXd5ooeyu3ttf2pUOQrfnEgL/view?usp=sharing",
+    image: "/testimonila_image/galery_1.png",
   },
   {
     id: "g2",
@@ -26,7 +26,7 @@ const galleryItems: GalleryItem[] = [
     description: "Regular classroom session with faculty guidance.",
     category: "Lectures",
     size: "medium",
-    image: "https://drive.google.com/file/d/1nWgn6lx2hbUveFitJz4WK7ZanFH0RNCW/view?usp=sharing",
+    image: "/testimonila_image/galery2.png",
   },
   {
     id: "g3",
@@ -34,7 +34,7 @@ const galleryItems: GalleryItem[] = [
     description: "Newspaper coverage of top ranks.",
     category: "Results",
     size: "small",
-    image: "https://drive.google.com/file/d/1s1L4dJ3Na_6uFuEA7TUEQIRBZLwnyVwt/view?usp=sharing",
+    image: "/testimonila_image/galery_3.jpg",
   },
   {
     id: "g4",
@@ -42,7 +42,7 @@ const galleryItems: GalleryItem[] = [
     description: "Print media featuring IITSF achievers.",
     category: "Results",
     size: "small",
-    image: "https://drive.google.com/file/d/1iFBmGEsQEtqonosiKtKHg6SCZ77lj6yi/view?usp=sharing",
+    image: "/testimonila_image/galery_4.jpg",
   },
   {
     id: "g5",
@@ -50,7 +50,7 @@ const galleryItems: GalleryItem[] = [
     description: "Yet another newspaper headline of IITSF ranks.",
     category: "Results",
     size: "medium",
-    image: "https://drive.google.com/file/d/12mh7d_dsveTQFoZfF86k32fvermuugXC/view?usp=sharing",
+    image: "/testimonila_image/galery_5.jpg",
   },
   {
     id: "g6",
@@ -99,10 +99,35 @@ const galleryItems: GalleryItem[] = [
   },
 ];
 
-const toDriveImageUrl = (url: string): string => {
-  const match = url.match(/\/d\/([^/]+)/);
-  if (!match) return url;
-  return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1600`;
+const toYouTubeEmbedUrl = (url: string): string | null => {
+  try {
+    const parsed = new URL(url);
+    const host = parsed.hostname.replace(/^www\./, "");
+
+    if (host === "youtu.be") {
+      const id = parsed.pathname.slice(1);
+      return id ? `https://www.youtube.com/embed/${id}?rel=0` : null;
+    }
+
+    if (host === "youtube.com" || host === "m.youtube.com") {
+      const videoId = parsed.searchParams.get("v");
+      if (videoId) {
+        return `https://www.youtube.com/embed/${videoId}?rel=0`;
+      }
+
+      const parts = parsed.pathname.split("/").filter(Boolean);
+      if (parts[0] === "shorts" && parts[1]) {
+        return `https://www.youtube.com/embed/${parts[1]}?rel=0`;
+      }
+      if (parts[0] === "embed" && parts[1]) {
+        return `https://www.youtube.com/embed/${parts[1]}?rel=0`;
+      }
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
 };
 
 const getCardClassName = (item: GalleryItem): string => {
@@ -171,30 +196,27 @@ const GalleryPage: React.FC = () => {
         {/* Grid */}
         <section className="galGrid">
           {visibleItems.map((item) => {
-            const imageSrc = toDriveImageUrl(item.image);
+            const imageSrc = item.image;
             const className = getCardClassName(item);
             if (item.video) {
+              const embedUrl = toYouTubeEmbedUrl(item.video);
               return (
                 <article className={className} key={item.id}>
-                  <img className="galImg" alt={item.title} src={imageSrc} />
-                  <div className="galVideoOverlay" />
-                  <a className="galPlayWrap" href={item.video} target="_blank" rel="noreferrer">
-                    <div className={`galPlayBtn${item.size === "small" ? " galPlayBtnSmall" : ""}`}>
-                      <span className="material-symbols-outlined">play_arrow</span>
-                    </div>
-                  </a>
-                  <div className={`galTime${item.size === "small" ? " galTimeSmall" : ""}`}>
-                    {item.size === "small" ? "Short" : "Video"}
-                  </div>
-                  <div className="galBadge">{item.category}</div>
-                  <div className={`${item.size === "small" ? "galSmallBottom" : "galWideBottom"}`}>
-                    <p className={`${item.size === "small" ? "galSmallTitle" : "galWideTitle"}`}>
-                      {item.title}
-                    </p>
-                    <p className={`${item.size === "small" ? "galSmallSub" : "galWideSub"}`}>
-                      {item.description}
-                    </p>
-                  </div>
+                  {embedUrl ? (
+                    <iframe
+                      className="galVideoFrame"
+                      src={embedUrl}
+                      title={item.title}
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <a className="galVideoLinkFallback" href={item.video} target="_blank" rel="noreferrer">
+                      <img className="galImg" alt={item.title} src={imageSrc} />
+                    </a>
+                  )}
                 </article>
               );
             }

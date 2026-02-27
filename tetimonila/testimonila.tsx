@@ -6,85 +6,85 @@ const hallResults = [
     name: "Srishti Aggarwal",
     label: "Percentile",
     value: "99.13",
-    img: "https://drive.google.com/file/d/1c9Z-zDGhBwUSorkNju8P7ch6FtcYtlw-/view?usp=sharing",
+    img: "/testimonila_image/Shristi.png",
   },
   {
     name: "Aditya Kadanga",
     label: "Percentile",
     value: "96.74",
-    img: "https://drive.google.com/file/d/1yNcvdzKNMaGpNKPd3JWYnzkkZU9YF-PT/view?usp=sharing",
+    img: "/testimonila_image/Aditya.png",
   },
   {
     name: "Dhruv Maheshwari",
     label: "Percentile",
     value: "96.79",
-    img: "https://drive.google.com/file/d/1FEGwxN-fm6bWCQpRIh1aaFqzJ9WtYtoM/view?usp=sharing",
+    img: "/testimonila_image/Dhruv.png",
   },
   {
     name: "Anmol yadav",
     label: "Percentile",
     value: "99.65",
-    img: "https://drive.google.com/file/d/1ucvP3SOVxVu4bgptmxSSzCsIYZlVO0bJ/view?usp=sharing",
+    img: "/testimonila_image/Anmol_yadav.png",
   },
   {
     name: "Mukul Saini",
     label: "Percentile",
     value: "99.6",
-    img: "https://drive.google.com/file/d/1TxXRZfY2mOwzSuaAkbnwfL31YhJmp1Gr/view?usp=sharing",
+    img: "/testimonila_image/Mukul_saini.png",
   },
   {
     name: "Ansh Goyal",
     label: "Percentile",
     value: "99.23",
-    img: "https://drive.google.com/file/d/1KBmgdEMuWDYeS7vhM9NpOSLYOEoNkqXQ/view?usp=sharing",
+    img: "/testimonila_image/Ansh_goyal.png",
   },
   {
     name: "Nitin",
     label: "AIR",
     value: "1198",
-    img: "https://drive.google.com/file/d/1eQHqQdEnUcLixlVk3dsI3fvWLyYVIwUx/view?usp=sharing",
+    img: "/testimonila_image/Nitin.png",
   },
   {
     name: "Prakhar Aggarwal",
     label: "Percentile",
     value: "99.85",
-    img: "https://drive.google.com/file/d/1AGNecsn0AVSXbmhHp_zfoBpn3v5I_AVG/view?usp=sharing",
+    img: "/testimonila_image/Prakhar_Agrwall.png",
   },
   {
     name: "Ajay Sharma",
     label: "AIR",
     value: "982",
-    img: "https://drive.google.com/file/d/112r0Zvp-abTuilGgoT1faqPKR3JfP56m/view?usp=sharing",
+    img: "/testimonila_image/Ajay_Shanrma.png",
   },
   {
     name: "Anuj Arora",
     label: "AIR",
     value: "501",
-    img: "https://drive.google.com/file/d/1vwLTCcytUkD_iR5WRtlL96ipTya33Ulw/view?usp=sharing",
+    img: "/testimonila_image/Anuj Arora.png",
   },
   {
     name: "Ankit Aggarwal",
     label: "AIR",
     value: "22",
-    img: "/testimonila_image/Ankit Aggarwal AIR 22.jpeg",
+    img: "/testimonila_image/Ankit Aggarwal.png",
   },
   {
     name: "Arjun Chauhan",
     label: "AIR",
     value: "591",
-    img: "/testimonila_image/Arjun Chauhan AIR 591.jpeg",
+    img: "/testimonila_image/Arjun Chauhan.png",
   },
   {
     name: "Chirag Jain",
     label: "AIR",
     value: "529",
-    img: "/testimonila_image/With Chirag Jain AIR 529.jpeg",
+    img: "/testimonila_image/chirag_jain.png",
   },
   {
     name: "Prakhar Aggarwal",
     label: "AIR",
     value: "959",
-    img: "/testimonila_image/prakhar Aggarwal AIR 959.jpeg",
+    img: "/testimonila_image/Prakhar_Agrwall.png",
   },
 ];
 
@@ -92,22 +92,6 @@ const fullResultImages = [
   "/testimonila_image/full_image_1.jpeg",
   "/testimonila_image/full_image_2.jpeg",
 ];
-
-const toDriveDirectUrl = (url: string): string => {
-  if (url.startsWith("/")) return url;
-
-  const filePathMatch = url.match(/\/d\/([^/]+)/);
-  if (filePathMatch) {
-    return `https://drive.google.com/thumbnail?id=${filePathMatch[1]}&sz=w1600`;
-  }
-
-  const openUrlMatch = url.match(/[?&]id=([^&]+)/);
-  if (openUrlMatch) {
-    return `https://drive.google.com/thumbnail?id=${openUrlMatch[1]}&sz=w1600`;
-  }
-
-  return url;
-};
 
 const SuccessStoriesPage: React.FC = () => {
   const [showAllHall, setShowAllHall] = useState(false);
@@ -201,7 +185,7 @@ const SuccessStoriesPage: React.FC = () => {
                   <div className="ssResultImageWrap">
                     <img
                       className="ssResultImage"
-                      src={toDriveDirectUrl(result.img)}
+                      src={result.img}
                       alt={`${result.name} result`}
                     />
                   </div>

@@ -1,39 +1,13 @@
 import React, { useState } from "react";
 import "./faculty.css";
 
-const getDriveId = (url: string): string | null => {
-  const filePathMatch = url.match(/\/d\/([^/]+)/);
-  if (filePathMatch) {
-    return filePathMatch[1];
-  }
-  const queryMatch = url.match(/[?&]id=([^&]+)/);
-  if (queryMatch) {
-    return queryMatch[1];
-  }
-  return null;
-};
-
-const drivePrimary = (url: string): string => {
-  const id = getDriveId(url);
-  if (!id) return url;
-  return `https://drive.google.com/uc?export=view&id=${id}`;
-};
-
-const driveFallback = (url: string): string | null => {
-  const id = getDriveId(url);
-  if (!id) return null;
-  return `https://drive.google.com/thumbnail?id=${id}&sz=w1600`;
-};
-
 const teamMembers = [
   {
     subject: "Physics",
     name: "Er. Shishir Mohta",
     role: "Director & Senior Physics Faculty (B.Tech, IIT Delhi)",
-    image: drivePrimary("https://drive.google.com/file/d/1G0HBfg16toFjvtvgfJ-KiyCmvcEoTgvc/view?usp=sharing"),
-    imageFallback: driveFallback(
-      "https://drive.google.com/file/d/1G0HBfg16toFjvtvgfJ-KiyCmvcEoTgvc/view?usp=sharing"
-    ),
+    image: "/faculty/Shishir.png",
+    imageFallback: "/faculty/director.png",
     alt: "Er. Shishir Mohta - Physics Faculty",
     highlights: [
       "27+ years of teaching experience in Physics.",
@@ -45,10 +19,8 @@ const teamMembers = [
     subject: "Mathematics",
     name: "Mr. Anuj Kumar",
     role: "Senior Mathematics Faculty (IIT Roorkee)",
-    image: drivePrimary("https://drive.google.com/file/d/1WqK3IYsxXVK-iFCgB3sI3DS3X5MBdVY_/view?usp=sharing"),
-    imageFallback: driveFallback(
-      "https://drive.google.com/file/d/1WqK3IYsxXVK-iFCgB3sI3DS3X5MBdVY_/view?usp=sharing"
-    ),
+    image: "/faculty/Anuj_kumar.png",
+    imageFallback: "/faculty/director.png",
     alt: "Mr. Anuj Kumar - Mathematics Faculty",
     highlights: [
       "20+ years of rich teaching experience in Mathematics.",
@@ -60,10 +32,8 @@ const teamMembers = [
     subject: "Chemistry",
     name: "Dr. Gaurav Garg",
     role: "Senior Chemistry Faculty (BAMS, M.Sc. Chemistry)",
-    image: drivePrimary("https://drive.google.com/file/d/1j5XqyjlhJ7tIZNfdhU5w7iyWSvWOdRvJ/view?usp=sharing"),
-    imageFallback: driveFallback(
-      "https://drive.google.com/file/d/1j5XqyjlhJ7tIZNfdhU5w7iyWSvWOdRvJ/view?usp=sharing"
-    ),
+    image: "/faculty/gaurav_sir.png",
+    imageFallback: "/faculty/director.png",
     alt: "Dr. Gaurav Garg - Chemistry Faculty",
     highlights: [
       "20+ years of teaching experience mentoring IIT-JEE and NEET-UG toppers.",
@@ -163,7 +133,7 @@ const FacultyPage: React.FC = () => {
                   <img
                     className="featuredImage"
                     alt="Professional headshot of Shishir Mohta, Founder of IIT Study Forum"
-                    src="/logo/hod.png"
+                    src="/faculty/director.png"
                   />
                   <div className="featuredLabel">Founder &amp; HOD Physics</div>
                 </div>
